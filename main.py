@@ -293,49 +293,50 @@ def load_photo():
                         <h1 align='center'>Загрузка фотографии</h1>
                         <h4 align='center'>для участия в миссии</h4>
                         <div>
-                            <form class="login_form" method="post">
+                            <img src="{url_for('static', filename='img/you_photo.png')}" style="width: 200px;height: 200px">
+                            <form class="form-login" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
-                                    <label for="photo">Приложите фотографию</label>
-                                    <input accept=".png,.jpg" type="file" class="form-control-file" 
-                                            id="photo" name="file">
+                                    <label for="new_photo">Выберите файл</label>
+                                    <input accept=".png,.jpg" type="file" class="form-control-file"
+                                    id="new_photo" name="new_photo">
                                 </div>
-                                <br>
-                                <img src="static/photo/Задача.png">
-                                <br>
-                                <br>
                                 <button type="submit" class="btn btn-primary">Отправить</button>
                             </form>
                         </div>
                       </body>
                     </html>'''
     elif request.method == 'POST':
-
-        print(request.form['file'])
-        f = request.files['file']
-        print(f)
+        f = request.files['new_photo']
+        with open('static/img/you_photo.png', 'wb') as you_photo:
+            you_photo.write(f.read())
         return f'''<!doctype html>
-                           <html lang="en">
-                             <head>
-                               <meta charset="utf-8">
-                               <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-                               <link rel="stylesheet"
-                               href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
-                               integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
-                               crossorigin="anonymous">
-                               <link rel="stylesheet" type="text/css" href="{url_for('static', filename='css/style.css')}" />
-                               <title>Загрузка файла</title>
-                             </head>
-                             <body>
-                               <h1 align='center'>Успех!</h1>
-                               <div>
-                                   <form class="login_form" method="post">
-                                        <br>
-                                        <p>qew</p>
-                                   </form>
-                               </div>
-                             </body>
-                           </html>'''
-
+                            <html lang="en">
+                              <head>
+                        <meta charset="utf-8">
+                        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+                        <link rel="stylesheet"
+                        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+                        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+                        crossorigin="anonymous">
+                        <link rel="stylesheet" type="text/css" href="{url_for('static', filename='css/style.css')}" />
+                        <title>Загрузка файла</title>
+                              </head>
+                              <body>
+                                <h1 align='center'>Загрузка фотографии</h1>
+                                <h4 align='center'>для участия в миссии</h4>
+                                <div class="form-group">
+                                    <img src="{url_for('static', filename='img/you_photo.png')}" style="width: 200px;height: 200px">
+                                    <form class="form-login" method="post" enctype="multipart/form-data">
+                                        <div class="form-group">
+                                                <label for="new_photo">Выберите файл</label>
+                                                <input accept=".png,.jpg" type="file" class="form-control-file"
+                                                id="new_photo" name="new_photo">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Отправить</button>
+                                    </form>
+                                </div>
+                              </body>
+                            </html>'''
 
 @app.route('/carousel')
 def carousel():
